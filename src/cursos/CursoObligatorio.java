@@ -9,14 +9,8 @@ public class CursoObligatorio extends Curso {
         super(codigo, nombre, creditos);
     }
 
-    /**
-     * TODO estudiante:
-     * Devuelve una dificultad calculada según los créditos.
-     * Fórmula sugerida: 1.5 * creditos.
-     */
     @Override
     public double dificultadEsperada() {
-        // TODO: implementar
-        return 0;
+        return 1.5 * getCreditos();
     }
 }

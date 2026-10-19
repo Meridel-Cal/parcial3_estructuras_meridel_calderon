@@ -9,14 +9,8 @@ public class CursoNivelatorio extends Curso {
         super(codigo, nombre, creditos);
     }
 
-    /**
-     * TODO estudiante:
-     * Devuelve una dificultad calculada según los créditos.
-     * Fórmula sugerida: 0.5 * creditos.
-     */
     @Override
     public double dificultadEsperada() {
-        // TODO: implementar
-        return 0;
+        return 0.5 * getCreditos();
     }
 }
