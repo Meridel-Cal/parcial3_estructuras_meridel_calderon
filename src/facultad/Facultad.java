@@ -34,4 +34,11 @@ public class Facultad {
 
     public String getNombre() { return nombre; }
     public ArrayList<PlanEstudios> getPlanes() { return planes; }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    public void setPlanes(ArrayList<PlanEstudios> planes) {
+        this.planes = planes;
+    }
 }

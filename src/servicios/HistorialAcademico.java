@@ -25,4 +25,5 @@ public class HistorialAcademico {
     }
 
     public Estudiante getEstudiante() { return estudiante; }
+    public void setEstudiante(Estudiante estudiante) { this.estudiante = estudiante; }
 }

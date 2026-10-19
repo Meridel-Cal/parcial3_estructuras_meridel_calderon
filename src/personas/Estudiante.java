@@ -14,18 +14,19 @@ public class Estudiante {
     private int contadorNotas;
     private ArrayList<Curso> inscritos;
 
+    //Constructor
     public Estudiante(String nombre, int maxNotas) {
         this.nombre = nombre;
-        this.notas = new int[maxNotas];
+        this.notas = new int[maxNotas]; //Crea el arreglo de notas con la capacidad maxima de notas que el envie como parametro
         this.contadorNotas = 0;
-        this.inscritos = new ArrayList<>();
+        this.inscritos = new ArrayList<>(); //Crea el ArrayList de cursos inscritos
     }
 
     /**
      * Registra una nota. Si el arreglo está lleno, no se registra.
      */
     public void registrarNota(int nota) {
-        if (contadorNotas < notas.length) {
+        if (contadorNotas < notas.length) { //Si el arreglo de notas tiene todavia espacio, añade la nota y al contador sumale 1male 1
             notas[contadorNotas] = nota;
             contadorNotas++;
         }
@@ -47,11 +48,18 @@ public class Estudiante {
 
     /** Asocia al estudiante con un curso (no lo crea). */
     public void inscribirCurso(Curso curso) {
-        inscritos.add(curso);
+        if (!inscritos.contains(curso)) { //Se verifica que el curso no este en la lista
+            inscritos.add(curso);
+        }
     }
 
     public String getNombre() { return nombre; }
     public int[] getNotas() { return notas; }
     public int getContadorNotas() { return contadorNotas; }
     public ArrayList<Curso> getInscritos() { return inscritos; }
+
+    public void setNombre(String nombre) { this.nombre = nombre; }
+    public void setNotas(int[] notas) { this.notas = notas; }
+    public void setContadorNotas(int contadorNotas) { this.contadorNotas = contadorNotas; }
+    public void setInscritos(ArrayList<Curso> inscritos) { this.inscritos = inscritos; }
 }

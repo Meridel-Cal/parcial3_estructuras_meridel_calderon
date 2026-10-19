@@ -47,4 +47,12 @@ public class PlanEstudios {
 
     public String getNombre() { return nombre; }
     public ArrayList<Curso> getCursos() { return cursos; }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setCursos(ArrayList<Curso> cursos) {
+        this.cursos = cursos;
+    }
 }
