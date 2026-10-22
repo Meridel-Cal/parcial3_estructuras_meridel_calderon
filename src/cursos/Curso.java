@@ -1,4 +1,4 @@
-package cursos;
+package cursos; //Agrupa las clases relacionadas con cursos en un solo paquete
 
 /**
  * Clase abstracta que representa un curso del plan de estudios.
@@ -10,6 +10,7 @@ public abstract class Curso {
     private String nombre;
     private int creditos;
 
+    //Constructor
     public Curso(String codigo, String nombre, int creditos) {
         this.codigo = codigo;
         this.nombre = nombre;
@@ -22,6 +23,7 @@ public abstract class Curso {
      */
     public abstract double dificultadEsperada();
 
+    //Encapsulamientos
     public String getCodigo() { return codigo; }
     public String getNombre() { return nombre; }
     public int getCreditos() { return creditos; }

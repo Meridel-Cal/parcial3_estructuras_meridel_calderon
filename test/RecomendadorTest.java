@@ -24,14 +24,15 @@ public class RecomendadorTest {
         Estudiante e = new Estudiante("Ana", 5);
         e.registrarNota(5);
         e.registrarNota(5);
-        e.inscribirCurso(new CursoElectivo("ELE1", "IA", 4));
+        Curso electivo = new CursoElectivo("ELE1", "IA", 4);
+        e.inscribirCurso(electivo);
+        e.inscribirCurso(new CursoNivelatorio("NIV1", "Intro", 2));
 
         HistorialAcademico h = new HistorialAcademico(e);
         Recomendador r = new Recomendador();
         List<Curso> sugerencias = r.recomendar(h);
 
-        assertFalse(sugerencias.isEmpty());
-        assertTrue(sugerencias.get(0) instanceof CursoElectivo);
+        assertEquals(List.of(electivo), sugerencias);
     }
 
     @Test
@@ -39,13 +40,36 @@ public class RecomendadorTest {
         Estudiante e = new Estudiante("Ana", 5);
         e.registrarNota(2);
         e.registrarNota(3);
-        e.inscribirCurso(new CursoNivelatorio("NIV1", "Intro", 2));
+        Curso nivelatorio = new CursoNivelatorio("NIV1", "Intro", 2);
+        e.inscribirCurso(nivelatorio);
+        e.inscribirCurso(new CursoElectivo("ELE1", "IA", 4));
 
         HistorialAcademico h = new HistorialAcademico(e);
         Recomendador r = new Recomendador();
         List<Curso> sugerencias = r.recomendar(h);
 
-        assertFalse(sugerencias.isEmpty());
-        assertTrue(sugerencias.get(0) instanceof CursoNivelatorio);
+        assertEquals(List.of(nivelatorio), sugerencias);
+    }
+
+    @Test
+    void recomendarRetornaListaVaciaSiNoHayCursosDelTipoCorrespondiente() {
+        Estudiante buenPromedio = new Estudiante("Ana", 5);
+        buenPromedio.registrarNota(5);
+        buenPromedio.inscribirCurso(new CursoNivelatorio("NIV1", "Intro", 2));
+
+        Estudiante bajoPromedio = new Estudiante("Luis", 5);
+        bajoPromedio.registrarNota(2);
+        bajoPromedio.inscribirCurso(new CursoElectivo("ELE1", "IA", 4));
+
+        Recomendador recomendador = new Recomendador();
+        List<Curso> sugerenciasBuenPromedio =
+            recomendador.recomendar(new HistorialAcademico(buenPromedio));
+        List<Curso> sugerenciasBajoPromedio =
+            recomendador.recomendar(new HistorialAcademico(bajoPromedio));
+
+        assertNotNull(sugerenciasBuenPromedio);
+        assertTrue(sugerenciasBuenPromedio.isEmpty());
+        assertNotNull(sugerenciasBajoPromedio);
+        assertTrue(sugerenciasBajoPromedio.isEmpty());
     }
 }

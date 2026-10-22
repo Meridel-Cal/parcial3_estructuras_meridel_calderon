@@ -40,11 +40,27 @@ public class Main {
             System.out.println("  - " + c.getCodigo() + ": " + c.getNombre()));
 
         System.out.println("Promedio de " + est.getNombre() + ": " + est.promedio());
+        System.out.println("Cursos inscritos por " + est.getNombre() + ": " + hist.cantidadCursos());
         System.out.println("Dificultad promedio del plan: " + plan.dificultadPromedio());
         System.out.println("Total de cursos de la facultad: " + facultad.totalCursos());
 
         System.out.println("Recomendaciones:");
         rec.recomendar(hist).forEach(c ->
+            System.out.println("  * " + c.getNombre()));
+
+        // Se demuestra también la recomendación para un promedio menor a 4.0
+        Estudiante estBajoPromedio = new Estudiante("Luis", 5);
+        estBajoPromedio.registrarNota(2);
+        estBajoPromedio.registrarNota(3);
+        for (Curso c : plan.getCursos()) {
+            estBajoPromedio.inscribirCurso(c);
+        }
+
+        HistorialAcademico histBajoPromedio = new HistorialAcademico(estBajoPromedio);
+        System.out.println("Promedio de " + estBajoPromedio.getNombre() + ": "
+            + histBajoPromedio.promedio());
+        System.out.println("Recomendaciones para " + estBajoPromedio.getNombre() + ":");
+        rec.recomendar(histBajoPromedio).forEach(c ->
             System.out.println("  * " + c.getNombre()));
     }
 }

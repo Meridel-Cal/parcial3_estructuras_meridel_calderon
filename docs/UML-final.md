@@ -40,7 +40,7 @@ relaciones. No se permite agregar ni eliminar clases.
 | - nombre: String         |
 | - cursos: ArrayList<Curso> |
 +--------------------------+
-| + PlanEstudios(nombre:String) |
+2| + PlanEstudios(nombre:String) |
 | - agregarCurso(c:Curso):void {private} |
 | + dificultadPromedio():double |
 | + getNombre():String |

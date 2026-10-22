@@ -10,6 +10,7 @@ public class CursoElectivo extends Curso {
 
     @Override
     public double dificultadEsperada() {
+        //AÑADIDO
         return 1.0 * getCreditos();
     }
 }

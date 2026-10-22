@@ -11,6 +11,7 @@ public class CursoNivelatorio extends Curso {
 
     @Override
     public double dificultadEsperada() {
+        //AÑADIDO
         return 0.5 * getCreditos();
     }
 }

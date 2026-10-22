@@ -15,27 +15,28 @@ public class Recomendador {
     /**
      * Recibe un HistorialAcademico y retorna una lista de cursos recomendados.
      * Regla sugerida:
-     *   - Si el promedio es >= 4.0, recomendar cursos electivos.
-     *   - Si el promedio es < 4.0, recomendar cursos nivelatorios.
-     * La lista puede estar vacía si no hay cursos disponibles.
+     *   - Si el promedio es >= 4.0, recomienda los cursos electivos inscritos.
+     *   - Si el promedio es < 4.0, recomienda los cursos nivelatorios inscritos.
+     * La lista queda vacía si no hay cursos inscritos del tipo correspondiente.
      */
 
+    //Relacion de dependencia: Recomendador usa historial como parametro, pero no lo guarda como atributo. Lo usa cuando
+    // lo necesita para recomendar cursos. Por eso es una relación de dependencia.
     public List<Curso> recomendar(HistorialAcademico historial) {
 
+        //AÑADIDO
         List<Curso> recomendaciones = new ArrayList<>();
         double promedio = historial.promedio();
 
-        if (promedio >= 4.0) {
-            recomendaciones.add(new CursoElectivo("ELEC001", "Electivo 1", 3));
-            recomendaciones.add(new CursoElectivo("ELEC002", "Electivo 2", 3));
+        //Instanceof: se usa verificar que curso es un cursoElectivo
+        for (Curso curso : historial.getEstudiante().getInscritos()) {
+            if (promedio >= 4.0 && curso instanceof CursoElectivo) {
+                recomendaciones.add(curso);
+            } else if (promedio < 4.0 && curso instanceof CursoNivelatorio) {
+                recomendaciones.add(curso);
+            }
         }
-        else {
-            recomendaciones.add(new CursoNivelatorio("NIV001", "Nivelatorio 1", 2));
-            recomendaciones.add(new CursoNivelatorio("NIV002", "Nivelatorio 2", 2));
-        }
-
 
         return recomendaciones;
-
     }
 }

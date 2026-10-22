@@ -16,6 +16,8 @@ public class PlanEstudios {
         this.nombre = nombre;
         this.cursos = new ArrayList<>();
 
+        //AÑADIDO
+        //Relacion de composicion: el plan crea sus cursos y los agrega a su lista interna
         agregarCurso(new CursoObligatorio("MAT101", "Matemáticas I", 4));
         agregarCurso(new CursoElectivo("ART201", "Historia del Arte", 3));
         agregarCurso(new CursoNivelatorio("ING001", "Inglés Básico", 2));
@@ -27,6 +29,8 @@ public class PlanEstudios {
      * Solo el plan puede crear sus cursos (composición).
      */
     private void agregarCurso(Curso curso) {
+        //AÑADIDO
+        //Relacion de composicion: se añade esos objetos a la lista interna
         cursos.add(curso);
     }
 
@@ -35,6 +39,7 @@ public class PlanEstudios {
      * Retorna 0 si el plan no tiene cursos.
      */
     public double dificultadPromedio() {
+        //AÑADIDO
         if (cursos.isEmpty()) {
             return 0;
         }
@@ -48,10 +53,11 @@ public class PlanEstudios {
     public String getNombre() { return nombre; }
     public ArrayList<Curso> getCursos() { return cursos; }
 
+    //AÑADIDO
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
     public void setCursos(ArrayList<Curso> cursos) {
         this.cursos = cursos;
     }
